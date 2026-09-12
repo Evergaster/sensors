@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensores · Sistemas Programables · T01</title>
+<link rel="stylesheet" href="assets/vendor/fontawesome/fontawesome.min.css">
+<link rel="stylesheet" href="assets/vendor/driver/driver.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ======================= BARRA SUPERIOR ======================= -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="nav-logo" href="#inicio"><span class="dotp"></span>SENSORES<span class="red">_</span>T01</a>
+    <nav class="nav-chips" id="navChips">
+      <a class="nav-chip" href="#inicio">01</a>
+      <a class="nav-chip" href="#intro">02</a>
+      <a class="nav-chip" href="#clas">03</a>
+      <a class="nav-chip" href="#comp">04</a>
+      <a class="nav-chip" href="#opticos">05</a>
+      <a class="nav-chip" href="#prox">06</a>
+      <a class="nav-chip" href="#temp">07</a>
+      <a class="nav-chip" href="#pres">08</a>
+      <a class="nav-chip" href="#reto">09</a>
+      <a class="nav-chip" href="#glos">10</a>
+    </nav>
+    <button class="tour-btn" id="btnTour" type="button">Recorrido</button>
+  </div>
+</header>
+
+<!-- ======================= MARQUEE ======================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee:track">
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema I: Sensores</b></span>
+    <span class="m-sep">●</span><span class="m-item">Material didáctico interactivo</span>
+    <span class="m-sep">●</span><span class="m-item">Opticos · Proximidad · Temperatura · Presion</span>
+    <span class="m-sep">●</span><span class="m-item">Demos en vivo · Cero internet</span>
+    <span class="m-sep">●</span><span class="m-item">Estilo Nothing</span>
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema I: Sensores</b></span>
+    <span class="m-sep">●</span><span class="m-item">Material didáctico interactivo</span>
+    <span class="m-sep">●</span><span class="m-item">Opticos · Proximidad · Temperatura · Presion</span>
+    <span class="m-sep">●</span><span class="m-item">Demos en vivo · Cero internet</span>
+    <span class="m-sep">●</span><span class="m-item">Estilo Nothing</span>
+  </div>
+</div>
+
+<main>
+<!-- ======================= HERO ======================= -->
+<section class="hero section" id="inicio">
+  <div class="wrap">
+    <div class="herolay">
+      <div class="hero-copy">
+        <div class="hero-kick">Sistemas Programables · T01</div>
+        <h1 class="big">SENSORES<span class="red">.</span></h1>
+        <p>Los sensores son los órganos sensoriales de los sistemas digitales: perciben variables físicas del mundo real y las convierten en datos que un microcontrolador puede leer y decidir. Esta página explica el tema con demos interactivas editadas a un lenguaje visual reducido.</p>
+        <div class="hero-cta">
+          <button class="btn red" id="btnTour2" type="button">Iniciar recorrido</button>
+          <button class="btn" data-goto="#intro" type="button">Ir a materia</button>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="hs-head"><span>consola · bus_datos</span><span class="red">● live</span></div>
+        <div class="hs-body">
+          <div class="feedbox" id="feed"></div>
+          <div class="glyphrow"><canvas id="heroGlyph" width="240" height="52"></canvas></div>
+          <div class="hs-label">glyph // sensor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statrow">
+      <div class="stat"><div class="stat-num">08<i>/</i>10</div><div class="stat-lbl">secciones</div></div>
+      <div class="stat"><div class="stat-num">05</div><div class="stat-lbl">familias de sensores</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">demos interactivas</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">offline · sin internet</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 01 INTRO / CICLO ======================= -->
+<section class="section" id="intro">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>01 · conceptos</div>
+      <h2 class="sec-title"><span class="num">/</span>¿Qué es un sensor?</h2>
+      <p class="sec-sub">Un sensor es un dispositivo que detecta y señala una condición de cambio: de forma discreta (presencia/ausencia de un objeto) o analógica (medición de distancia, tamaño, color). Transforma esa magnitud física en una señal eléctrica proporcional: el lenguaje del sistema programable.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cycle">
+      <div>
+        <p class="muted small" style="margin-bottom:14px;line-height:1.7">Arma la cadena de la medición activando los tres interruptores. Cuando la cadena esté completa, pulsa <b class="red">MEDIR</b> para ejecutar una medición en vivo.</p>
+        <div class="chain" id="chain">
+          <div class="cstage">
+            <button class="cswitch" data-on="false" type="button" aria-label="switch"></button>
+            <div><div class="cname">Magnitud física</div><div class="cdesc">luz · temperatura · presión · distancia</div></div>
+          </div>
+          <div class="chain-arrow"><span class="arrow">→</span> transducción</div>
+          <div class="cstage">
+            <button class="cswitch" data-on="false" type="button" aria-label="switch"></button>
+            <div><div class="cname">Sensor / transductor</div><div class="cdesc">convierte la magnitud en señal eléctrica</div></div>
+          </div>
+          <div class="chain-arrow"><span class="arrow">→</span> acondicionamiento</div>
+          <div class="cstage">
+            <button class="cswitch" data-on="false" type="button" aria-label="switch"></button>
+            <div><div class="cname">Señal eléctrica</div><div class="cdesc">voltaje, corriente, frecuencia o dato digital</div></div>
+          </div>
+        </div>
+        <button class="btn red" id="btnMeasure" type="button" style="margin-top:16px" disabled>Medir →</button>
+      </div>
+
+      <div class="card measure-box" id="measureBox">
+        <span class="tag">lectura del bus</span>
+        <div class="mono big" id="measureVal" style="font-size:42px;margin-top:14px">--</div>
+        <div class="mono muted small" style="width:100%;height:2px;background:var(--line2);margin:18px 0 10px"></div>
+        <p class="muted small" style="line-height:1.7">Descripción en tiempo real de la variable detectada por el sistema:</p>
+        <p class="mono" id="measureTxt" style="font-size:12px;line-height:1.9;margin-top:8px">La cadena de medición está incompleta. Activa los 3 interruptores para habilitar el sistema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 CLASIFICACIÓN ======================= -->
+<section class="section" id="clas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>02 · clasificación</div>
+      <h2 class="sec-title"><span class="num">/</span>Tipos de sensores</h2>
+      <p class="sec-sub">Filtra la matriz tocando una categoría. Toca cualquier sensor para ver el detalle de su familia y principio de funcionamiento.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="clasSegs" style="margin-bottom:16px">
+      <button class="seg active" data-f="all" type="button">Todos</button>
+      <button class="seg" data-f="activo" type="button">Activos</button>
+      <button class="seg" data-f="pasivo" type="button">Pasivos</button>
+      <button class="seg" data-f="analog" type="button">Analógicos</button>
+      <button class="seg" data-f="digit" type="button">Digitales</button>
+    </div>
+
+    <div class="card" style="padding:14px 16px;margin-bottom:14px">
+      <span class="mono muted small" id="clasCount" style="letter-spacing:.12em;text-transform:uppercase">9 sensores / 9 visibles</span>
+      <div class="mono red small" id="clasDetail" style="margin-top:6px;letter-spacing:.04em">Selecciona un sensor para inspeccionarlo.</div>
+    </div>
+
+    <div class="cls" id="clsGrid">
+      <div class="tile" data-c="activo analog" data-d="Genera su propia señal eléctrica aprovechando un efecto físico (Seebeck, piezoeléctrico)."><span class="cat">activo</span><i class="fas fa-temperature-high"></i><b>Termopar</b><span>temperatura</span></div>
+      <div class="tile" data-c="pasivo analog" data-d="Varía su resistencia con la luz. No genera señal, solo modifica la corriente del circuito."><span class="cat">pasivo</span><i class="fas fa-sun"></i><b>Fotoresistor</b><span>luminosidad</span></div>
+      <div class="tile" data-c="pasivo analog" data-d="Termistor: su resistencia depende de la temperatura (NTC baja con el calor, PTC la aumenta)."><span class="cat">pasivo</span><i class="fas fa-thermometer-half"></i><b>Termistor</b><span>temperatura</span></div>
+      <div class="tile" data-c="pasivo analog" data-d="RTD: la resistencia del platino (Pt100) sube casi lineal con la temperatura. El más usado por su linealidad y estabilidad."><span class="cat">pasivo</span><i class="fas fa-chart-line"></i><b>RTD Pt100</b><span>temperatura</span></div>
+      <div class="tile" data-c="activo digit" data-d="Emite un pulso (o recibe) y detecta presencia/posición de forma discreta: sí / no."><span class="cat">activo</span><i class="fas fa-wave-square"></i><b>Ultrasónico</b><span>distancia · presencia</span></div>
+      <div class="tile" data-c="activo digit" data-d="Detecta campos magnéticos; genera una salida digital cuando un imán se acerca."><span class="cat">activo</span><i class="fas fa-magnet"></i><b>Efecto Hall</b><span>campo magnético</span></div>
+      <div class="tile" data-c="pasivo analog" data-d="Convertir fotones en corriente. El fotodiodo se usa en celdas y detectores de luz débiles."><span class="cat">pasivo</span><i class="fas fa-lightbulb"></i><b>Fotodiodo</b><span>luminosidad</span></div>
+      <div class="tile" data-c="activo analog" data-d="MEMS: convierte ondas de presión en una variación de capacitancia y después en voltaje."><span class="cat">activo</span><i class="fas fa-microphone"></i><b>Micrófono</b><span>sonido</span></div>
+      <div class="tile" data-c="activo digit" data-d="Disco con ranuras + par de optoemisor/receptor: cuenta pulsos para conocer posición y giro."><span class="cat">activo</span><i class="fas fa-camera"></i><b>Encoder óptico</b><span>giro · posición</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 COMPONENTES ======================= -->
+<section class="section" id="comp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>03 · componentes</div>
+      <h2 class="sec-title"><span class="num">/</span>Anatomía de un sensor óptico</h2>
+      <p class="sec-sub">Todo sensor óptico se compone de cuatro bloques: fuente, receptor, lentes y circuito de salida. Mueve el escáner (o prende el barrido automático) e inspecciona cada parte.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="compstage">
+      <div>
+        <svg class="compsvg" id="compSvg" viewBox="0 0 200 160" preserveAspectRatio="none">
+          <g class="part" data-part="cover">
+            <rect x="30" y="16" width="140" height="22" rx="3" fill="#141414" stroke="#333" stroke-width="1.5"/>
+            <line x1="55" y1="27" x2="145" y2="27" stroke="#444" stroke-width="1" stroke-dasharray="4 4"/>
+          </g>
+          <g class="part" data-part="housing">
+            <rect x="16" y="34" width="168" height="100" rx="5" fill="#0d0d0d" stroke="#2c2c2c" stroke-width="1.5"/>
+            <line x1="16" y1="70" x2="184" y2="70" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="2 6"/>
+          </g>
+          <g class="part" data-part="element">
+            <circle cx="100" cy="88" r="17" fill="#1a0a10" stroke="#555" stroke-width="1.5"/>
+            <circle cx="100" cy="88" r="8" fill="none" stroke="#ff0036" stroke-width="1" opacity=".7"/>
+          </g>
+          <g class="part" data-part="pins">
+            <rect x="52" y="134" width="12" height="22" fill="#181818" stroke="#3a3a3a" stroke-width="1"/>
+            <rect x="136" y="134" width="12" height="22" fill="#181818" stroke="#3a3a3a" stroke-width="1"/>
+          </g>
+          <line class="scanline" id="scanLine" x1="0" x2="200" y1="20" y2="20" stroke="#ff0036" stroke-width="1.5" opacity=".9"/>
+        </svg>
+      </div>
+      <div class="comp-side">
+        <div class="comp-label" id="compLabel">
+          <b>—</b>
+          <span>Mueve el escáner para identificar cada bloque del sensor óptico.</span>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:4px">posición del escáner</div>
+          <input type="range" id="scanRange" min="0" max="100" value="12">
+        </div>
+        <button class="btn" id="scanAuto" type="button">Barrido automático: OFF</button>
+        <p class="muted small" style="line-height:1.7;font-size:12px">Analogía: como el escaneo de superficie de Ear (1), el sensor lee el mundo por partes y las convierto en datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 ÓPTICOS ======================= -->
+<section class="section" id="opticos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>04 · ópticos</div>
+      <h2 class="sec-title"><span class="num">/</span>Sensor de luz LDR</h2>
+      <p class="sec-sub">Mueve la linterna por la pista y observa cómo cambian la luminosidad, la resistencia y el divisor de voltaje. Interacción distinta: control por posición, no por deslizador.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="flo" id="floPanel">
+      <div class="flo-track" id="floTrack">
+        <div class="grid-dots"></div>
+        <div class="fcone" id="fcone"></div>
+        <div class="ldrbox" id="ldrbox"><i class="fas fa-sun"></i></div>
+      </div>
+      <div class="flo-read">
+        <div class="flo-cell"><span>iluminación · lux</span><b id="floLux">0</b></div>
+        <div class="flo-cell"><span>resistencia R</span><b id="floR">1.00 MΩ</b></div>
+        <div class="flo-cell"><span>voltaje ADC · V</span><b id="floV">3.00</b></div>
+        <div class="flo-cell"><span>nivel de luz</span><b id="floLum">0%</b></div>
+      </div>
+      <canvas class="spark" id="spark" width="540" height="64"></canvas>
+    </div>
+    <p class="mono muted small" style="line-height:1.7;margin-top:10px">Es la versión pasiva del sensor óptico: una fuente externa ilumina el LDR y este cambia su resistencia. En el sensor fotoeléctrico, en cambio, la fuente y el receptor son parte del mismo dispositivo.</p>
+  </div>
+</section>
+
+<!-- ======================= 05 MODOS ======================= -->
+<section class="section" id="modos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>05 · modos</div>
+      <h2 class="sec-title"><span class="num">/</span>Modos de detección</h2>
+      <p class="sec-sub">Barrera, retro-reflexivo y difuso. Elige el modo, configura la distancia y alterna la presencia del objeto; el haz y la salida responden al instante.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="segs" id="modeTabs">
+        <button class="seg red active" data-m="barrera" type="button">Barrera</button>
+        <button class="seg red" data-m="retro" type="button">Retro-reflexivo</button>
+        <button class="seg red" data-m="difuso" type="button">Difuso</button>
+      </div>
+
+      <div class="csc" id="modesScene">
+        <div class="grid-dots"></div>
+        <div class="emitter" data-part="e"><i class="fas fa-bullseye"></i></div>
+        <div class="receiver" id="modeRec" data-part="r"><i class="fas fa-arrow-right"></i></div>
+        <div class="reflector" id="modeRef" data-part="f"><i class="fas fa-ghost"></i></div>
+        <div class="beam" id="modeBeam"></div>
+        <div class="mode-obj" id="modeObj"><i class="fas fa-box"></i></div>
+      </div>
+
+      <p class="mono muted small" id="modePrinc" style="line-height:1.7;margin-top:10px">—</p>
+
+      <div class="grid2" style="margin-top:12px">
+        <div>
+          <div class="mono muted small" style="margin-bottom:4px">distancia de detección</div>
+          <input type="range" id="modeDist" min="20" max="200" value="90" class="accent">
+          <div class="readrow"><span class="muted">distancia</span><b id="modeDistVal">90 cm</b></div>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">objeto en la zona</div>
+          <button class="btn" id="modeTog" type="button">Insertar objeto</button>
+          <div class="status" id="modeStatus" style="margin-top:12px"><span class="dot"></span>sin estado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 PROXIMIDAD ======================= -->
+<section class="section" id="prox">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>06 · proximidad</div>
+      <h2 class="sec-title"><span class="num">/</span>Sensores de proximidad</h2>
+      <p class="sec-sub">Cinco familias detectan objetos cercanos sin contacto: campo inductivo para metales, material capacitivo para aislantes, eco ultrasónico (parking), reed magnético e infrarrojo térmico.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="prox-panel">
+      <div class="segs" id="proxTabs">
+        <button class="seg red active" data-m="ind" type="button">Inductivo</button>
+        <button class="seg red" data-m="cap" type="button">Capacitivo</button>
+        <button class="seg red" data-m="us" type="button">Ultrasónico</button>
+        <button class="seg red" data-m="mag" type="button">Magnético reed</button>
+        <button class="seg red" data-m="ir" type="button">Infrarrojo</button>
+      </div>
+
+      <div class="prox-stage" id="proxStage">
+        <div class="grid-dots"></div>
+        <div class="phead" id="phead"><i class="fas fa-wifi"></i></div>
+        <div class="fprobe" id="fprobe"></div>
+        <div class="echo" id="echo"></div>
+        <div class="pobj" id="pobj"><i class="fas fa-box"></i></div>
+      </div>
+
+      <div class="grid2" style="margin-top:12px">
+        <div id="ctl-prox" style="display:flex;flex-direction:column;gap:12px">
+          <div id="ctl-ind">
+            <div class="mono muted small" style="margin-bottom:4px">intensidad del campo</div>
+            <input type="range" id="indPow" min="0" max="100" value="60" class="accent">
+          </div>
+          <div id="ctl-cap" style="display:none">
+            <div class="mono muted small" style="margin-bottom:6px">material objetivo</div>
+            <div class="segs" id="capMat">
+              <button class="seg red active" data-e="2" type="button">Madera</button>
+              <button class="seg red" data-e="4" type="button">Plástico</button>
+              <button class="seg red" data-e="80" type="button">Agua</button>
+              <button class="seg red" data-e="1" type="button">Metal</button>
+            </div>
+          </div>
+          <div id="ctl-us" style="display:none">
+            <div class="mono muted small" style="margin-bottom:4px">distancia al objetivo</div>
+            <input type="range" id="usDist" min="5" max="150" value="60" class="accent">
+            <button class="btn" id="usPing" type="button" style="margin-top:8px">Enviar ping</button>
+          </div>
+          <div id="ctl-mag" style="display:none">
+            <div class="mono muted small" style="margin-bottom:8px">imán externo</div>
+            <button class="btn" id="magTog" type="button">Acercar imán</button>
+          </div>
+          <div id="ctl-ir" style="display:none">
+            <div class="mono muted small" style="margin-bottom:4px">temperatura de la fuente</div>
+            <input type="range" id="irTemp" min="25" max="900" value="40" class="accent">
+            <div class="readrow" style="margin-top:4px"><span class="muted">objeto caliente</span><b id="irTmpV">40 °C</b></div>
+          </div>
+          <button class="btn" id="proxObjTog" type="button">Objeto: ausente</button>
+        </div>
+
+        <div class="card" style="background:#050505">
+          <div class="readrow"><span class="muted">familia</span><b id="prxFamily">Inductivo</b></div>
+          <div class="readrow"><span class="muted">principio</span><b id="prxPrinc">campo magnético alterno</b></div>
+          <div class="readrow"><span class="muted">sensado</span><b class="red" id="prxSensado">—</b></div>
+          <div class="readrow"><span class="muted">lectura</span><b id="prxRead">—</b></div>
+          <div class="status" id="prxStatus" style="margin-top:10px"><span class="dot"></span>standby</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 07 TEMPERATURA ======================= -->
+<section class="section" id="temp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>07 · temperatura</div>
+      <h2 class="sec-title"><span class="num">/</span>Medición de temperatura</h2>
+      <p class="sec-sub">Sube o baja la temperatura con los botones y cambia de sensor para ver cómo cada tecnología traduce °C en señales distintas. Lectura sobre display de matriz de puntos.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="grid2" style="align-items:start">
+      <div class="t-display">
+        <div class="mono muted small" style="letter-spacing:.2em;text-transform:uppercase">display · °C</div>
+        <canvas id="templed" width="208" height="72"></canvas>
+        <div class="tempbar"><div class="fill" id="tempFill" style="width:0%"></div></div>
+        <div class="segs" id="tempTabs">
+          <button class="seg red active" data-t="ntc" type="button">NTC</button>
+          <button class="seg red" data-t="ptc" type="button">PTC</button>
+          <button class="seg red" data-t="rtd" type="button">RTD Pt</button>
+          <button class="seg red" data-t="tc" type="button">Termopar K</button>
+          <button class="seg red" data-t="lm" type="button">LM35</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mono muted small" style="letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">temperatura</div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <button class="kbd" id="tempDown" type="button">−</button>
+          <div class="mono" id="tempVal" style="font-size:34px;min-width:88px;text-align:center">25</div>
+          <button class="kbd" id="tempUp" type="button">+</button>
+        </div>
+        <div class="t-readrow" style="margin-top:16px">
+          <div class="t-read"><span id="tr1k">resistencia</span><b id="tr1v">—</b></div>
+          <div class="t-read"><span id="tr2k">señal</span><b id="tr2v">—</b></div>
+          <div class="t-read"><span id="tr3k">salida del bus</span><b id="tr3v">—</b></div>
+          <div class="t-read"><span>rango útil</span><b id="trRange">−55 a 125 °C</b></div>
+        </div>
+        <p class="muted small" style="line-height:1.7;margin-top:12px" id="tempTxt"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 08 PRESIÓN ======================= -->
+<section class="section" id="pres">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>08 · presión</div>
+      <h2 class="sec-title"><span class="num">/</span>Medición de presión</h2>
+      <p class="sec-sub">Mantén pulsado <b class="red">INFLAR</b> para aplicar presión: el diafragma se deforma y el medidor responde. Cuando pase el rango seguro, la válvula de seguridad ventila.</p>
+      <div class="sec-line"></div>
+    </div>
+
+<div class="p-stage">
+        <div class="segs" id="pressTabs" style="margin-bottom:12px">
+          <button class="seg red active" data-pt="abs" type="button">Absoluta</button>
+          <button class="seg red" data-pt="rel" type="button">Relativa / diferencial</button>
+        </div>
+
+        <div class="pump-row">
+          <button class="btn red" id="inflate" type="button"><i class="fas fa-bolt"></i> Inflar (mantén)</button>
+          <button class="btn" id="vent" type="button">Ventilar</button>
+        </div>
+
+      <div class="diaphragm">
+        <div class="dia-flex" id="diaflex"><div class="core" id="diacore"></div></div>
+      </div>
+
+      <div class="meter" id="pMeter"></div>
+      <div class="readrow"><span class="muted">presión del circuito</span><b class="red" id="pressVal">0 kPa</b></div>
+      <div class="readrow"><span class="muted">deformación del diafragma</span><b id="pressDef">0.0%</b></div>
+      <div class="valve-flag" id="valveFlag" style="display:none">⚠ válvula de seguridad abierta</div>
+      <p class="mono muted small" id="pressPrinc" style="line-height:1.7;margin-top:12px">La presión deforma un elemento elástico y el transductor convierte esa deformación en señal eléctrica.</p>
+      <p class="muted small" style="margin-top:6px">Usos: dispositivos médicos · climatización (HVAC) · control de procesos · maquinaria industrial · robótica · automotriz (combustible y frenos).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 09 RETO ======================= -->
+<section class="section" id="reto">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>09 · reto</div>
+      <h2 class="sec-title"><span class="num">/</span>Reto final</h2>
+      <p class="sec-sub">8 preguntas, una vida, cero trampas. Responde todo para desbloquear la calificación del módulo.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="quizstage" id="quizStage">
+      <div class="qprog" id="qprog"></div>
+      <div class="qcount" id="qcount">Pregunta 01 / 08</div>
+      <div class="qtext" id="qtext"></div>
+      <div class="qopts" id="qopts"></div>
+      <div class="quiz-fb" id="qfb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 10 GLOSARIO ======================= -->
+<section class="section" id="glos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>10 · glosario</div>
+      <h2 class="sec-title"><span class="num">/</span>Términos clave</h2>
+      <p class="sec-sub">Busca un término: la lista filtra en vivo mientras escribes.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="gsearch"><i class="fas fa-search"></i><input id="gInput" type="text" placeholder="filtrar términos…"></div>
+    <div class="glist" id="glist"></div>
+    <div class="gcount" id="gcount"></div>
+  </div>
+</section>
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="nav-logo"><span class="dotp"></span>SENSORES<span class="red">_</span>T01</span>
+      <span class="mono muted small">SISTEMAS PROGRAMABLES · MATERIAL DIDÁCTICO · 2026-2</span>
+    </div>
+    <div class="foot-team">
+      <div><b>Armando Iovani Martinez Torres </b><span>23040179</span></div>
+      <div><b>Everardo Garcia Romero</b><span>23040176</span></div>
+      <div><b>Jaime Corza Martínez </b><span>23040230</span></div>
+      <div><b>Ariadna Deyanira Soto Zaragoza</b><span>23040042</span></div>
+      <div><b>Miguel Ángel Campos Arciga</b><span>23040059</span></div>
+      <div><b>Pedro Pérez Marín</b><span>23040170/span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/driver/driver.min.js"></script>
+<script src="assets/vendor/confetti/confetti.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
