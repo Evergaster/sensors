@@ -72,6 +72,14 @@ body{
 }
 .tour-btn:hover{background:#ff2e5c}
 
+/* ---------------- theme switcher (T01 / T02) ---------------- */
+.theme-seg{display:flex;gap:0;border:1px solid var(--line2);border-radius:2px;overflow:hidden;flex:none;background:var(--panel)}
+.theme-seg a{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;padding:8px 12px;color:var(--muted);text-decoration:none;border-right:1px solid var(--line2);transition:.15s;white-space:nowrap}
+.theme-seg a:visited{color:var(--muted)}
+.theme-seg a:last-child{border-right:none}
+.theme-seg a:hover{color:var(--txt)}
+.theme-seg a.on{background:var(--red);color:#000;border-color:var(--red)}
+
 /* ---------------- marquee ---------------- */
 .marquee{border-block:1px solid var(--line);overflow:hidden;background:var(--panel);padding:9px 0}
 .marquee-track{display:flex;gap:0;width:max-content;animation:mq 28s linear infinite;font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
@@ -322,6 +330,9 @@ input[type=range]::-moz-range-track{height:2px;background:var(--line2)}
 /* footer */
 footer{border-top:1px solid var(--line);background:var(--panel);padding:30px 0 40px}
 .foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-nav{display:flex;justify-content:flex-end;gap:14px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.foot-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt);text-decoration:none;border:1px solid var(--line2);padding:7px 11px;border-radius:2px;transition:.2s}
+.foot-nav a:hover{border-color:var(--red);color:var(--red)}
 .foot-team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
 .foot-team div{border:1px solid var(--line);padding:12px;border-radius:2px}
 .foot-team b{font-size:12px;display:block}
@@ -338,6 +349,10 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:30px 0 4
 @media (max-width:520px){
   .cls{grid-template-columns:repeat(2,1fr)}
   .foot-team{grid-template-columns:1fr}
+  .topbar-in{gap:8px}
+  .nav-logo{font-size:11px}
+  .theme-seg a{font-size:10px;padding:6px 8px}
+  .tour-btn{padding:8px 10px}
 }
 
 /* ============================================================

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actuadores · Sistemas Programables · T02</title>
+<link rel="stylesheet" href="assets/vendor/fontawesome/fontawesome.min.css">
+<link rel="stylesheet" href="assets/vendor/driver/driver.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/tema2.css">
+</head>
+<body>
+
+<!-- ======================= BARRA SUPERIOR ======================= -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="nav-logo" href="index.html"><span class="dotp"></span>ACTUADORES<span class="red">_</span>T02</a>
+    <nav class="nav-chips" id="navChips">
+      <a class="nav-chip" href="#inicio">01</a>
+      <a class="nav-chip" href="#concepto">02</a>
+      <a class="nav-chip" href="#clas">03</a>
+      <a class="nav-chip" href="#elect">04</a>
+      <a class="nav-chip" href="#neum">05</a>
+      <a class="nav-chip" href="#hidr">06</a>
+      <a class="nav-chip" href="#ond">07</a>
+      <a class="nav-chip" href="#comp">08</a>
+      <a class="nav-chip" href="#criterio">09</a>
+      <a class="nav-chip" href="#apli">10</a>
+      <a class="nav-chip" href="#reto">11</a>
+      <a class="nav-chip" href="#glos">12</a>
+    </nav>
+    <div class="theme-seg">
+      <a href="index.html">T01</a>
+      <a href="tema2.html" class="on">T02</a>
+    </div>
+    <button class="tour-btn" id="btnTour" type="button">Recorrido</button>
+  </div>
+</header>
+
+<!-- ======================= MARQUEE ======================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee:track">
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema II: Actuadores</b></span>
+    <span class="m-sep">●</span><span class="m-item">Sensor → Controlador → Actuador</span>
+    <span class="m-sep">●</span><span class="m-item">Eléctricos · Neumáticos · Hidráulicos</span>
+    <span class="m-sep">●</span><span class="m-item">Motor DC · AC · Paso a paso</span>
+    <span class="m-sep">●</span><span class="m-item">Válvulas · Motobombas · Cilindros</span>
+    <span class="m-sep">●</span><span class="m-item">Estilo Nothing · Cero internet</span>
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema II: Actuadores</b></span>
+    <span class="m-sep">●</span><span class="m-item">Sensor → Controlador → Actuador</span>
+    <span class="m-sep">●</span><span class="m-item">Eléctricos · Neumáticos · Hidráulicos</span>
+    <span class="m-sep">●</span><span class="m-item">Motor DC · AC · Paso a paso</span>
+    <span class="m-sep">●</span><span class="m-item">Válvulas · Motobombas · Cilindros</span>
+    <span class="m-sep">●</span><span class="m-item">Estilo Nothing · Cero internet</span>
+  </div>
+</div>
+
+<main>
+<!-- ======================= HERO ======================= -->
+<section class="hero section" id="inicio">
+  <div class="wrap">
+    <div class="herolay">
+      <div class="hero-copy">
+        <div class="hero-kick">Sistemas Programables · T02</div>
+        <h1 class="big">ACTUADORES<span class="red">.</span></h1>
+        <p>Si los sensores son los <b class="muted">ojos</b> del sistema, los actuadores son sus <b class="red">músculos</b>: reciben una orden del controlador y la convierten en movimiento físico. Esta página explora la otra mitad del lazo sensor → controlador → actuador, con la misma estética reducida del tema anterior.</p>
+        <div class="hero-cta">
+          <button class="btn red" id="btnTour2" type="button">Iniciar recorrido</button>
+          <button class="btn" data-goto="#concepto" type="button">Ir a materia</button>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="hs-head"><span>consola · bus_actuadores</span><span class="red">● live</span></div>
+        <div class="hs-body">
+          <div class="feedbox" id="feed2"></div>
+          <div class="glyphrow"><canvas id="heroGlyph2" width="240" height="52"></canvas></div>
+          <div class="hs-label">glyph // actuador</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statrow">
+      <div class="stat"><div class="stat-num">11<i>/</i>12</div><div class="stat-lbl">secciones</div></div>
+      <div class="stat"><div class="stat-num">04</div><div class="stat-lbl">familias de actuadores</div></div>
+      <div class="stat"><div class="stat-num">09</div><div class="stat-lbl">demos interactivas</div></div>
+      <div class="stat"><div class="stat-num">S→C→A</div><div class="stat-lbl">lazo completo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 01 CONCEPTO / LAZO ======================= -->
+<section class="section" id="concepto">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>01 · concepto</div>
+      <h2 class="sec-title"><span class="num">/</span>Qué es un actuador</h2>
+      <p class="sec-sub">Un actuador es el componente final de un sistema programable: convierte la orden eléctrica, neumática o hidráulica del controlador en movimiento, fuerza o trabajo mecánico. Completa la cadena de la que los sensores son el inicio: <b class="red">SENSOR → CONTROLADOR → ACTUADOR</b>.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cycle">
+      <div>
+        <p class="muted small" style="margin-bottom:14px;line-height:1.7">Arma la cadena activando los tres bloques y pulsa <b class="red">EJECUTAR</b> para ver la orden recorrer todo el camino hasta el músculo del sistema.</p>
+        <div class="act-chain" id="chainAct">
+          <div class="act-node" data-on="false">
+            <div class="an-top"><div class="an-ico"><i class="fas fa-microchip"></i></div><div><div class="an-name">Sensor</div><div class="an-desc">percibe la variable y la digitaliza</div></div></div>
+          </div>
+          <div class="act-chain-arrow"><span class="arrow">→</span> adquisición</div>
+          <div class="act-node" data-on="false">
+            <div class="an-top"><div class="an-ico"><i class="fas fa-code"></i></div><div><div class="an-name">Controlador</div><div class="an-desc">decide: compara contra la consigna</div></div></div>
+          </div>
+          <div class="act-chain-arrow"><span class="arrow">→</span> orden de salida</div>
+          <div class="act-node" data-on="false">
+            <div class="an-top"><div class="an-ico"><i class="fas fa-cogs"></i></div><div><div class="an-name">Actuador</div><div class="an-desc">convierte la orden en movimiento</div></div></div>
+          </div>
+        </div>
+        <button class="btn red" id="btnExec" type="button" style="margin-top:16px" disabled>Ejecutar orden →</button>
+        <div class="exec-read" id="execRead">
+          <div class="l dim">bus_actuador :: la cadena está incompleta. Activa sensor, controlador y actuador.</div>
+        </div>
+      </div>
+
+      <div class="loop-card">
+        <div class="loop-tag">lazo cerrado · realimentación en vivo</div>
+        <p class="muted small" style="line-height:1.7">Ejemplo obligatorio de la relación <b class="red">S→C→A</b>. Mueve la <b>consigna</b> (setpoint) y observa cómo el sensor reporta, el controlador compara y el actuador mueve la carga hasta equilibrarse.</p>
+        <div class="readrow" style="margin:12px 0 4px"><span class="muted">consigna · setpoint</span><b id="cpSetVal" class="red">50</b></div>
+        <input type="range" id="cpSet" min="0" max="100" value="50" class="accent">
+
+        <div class="loop-cols" style="margin-top:12px">
+          <div class="loop-cell" id="lpSensor">
+            <div class="lc-head"><span>sensor</span><i class="lc-ico fas fa-eye"></i></div>
+            <div class="lc-val" id="lpSensorVal">0.0 %</div>
+            <div class="lc-bar"><i id="lpSensorBar"></i></div>
+          </div>
+          <div class="loop-cell" id="lpCtrl">
+            <div class="lc-head"><span>controlador</span><i class="lc-ico fas fa-code-branch"></i></div>
+            <div class="lc-val" id="lpCtrlVal">0 %</div>
+            <div class="lc-bar"><i id="lpCtrlBar"></i></div>
+          </div>
+          <div class="loop-cell" id="lpAct">
+            <div class="lc-head"><span>actuador</span><i class="lc-ico fas fa-cogs"></i></div>
+            <div class="lc-val" id="lpActVal">0 %</div>
+            <div class="lc-bar"><i id="lpActBar"></i></div>
+          </div>
+        </div>
+
+        <div class="loop-foot">
+          <span class="loop-status" id="lpStatus"><span class="dot"></span>INICIALIZANDO</span>
+          <button class="btn" id="lpPert" type="button" style="margin-left:auto;font-size:10px">Perturbar</button>
+        </div>
+        <p class="mono muted small" style="margin-top:10px;line-height:1.7">error del lazo: <b class="red" id="lpErr">0.0</b> — el controlador reduce el error hasta estabilizarse en la consigna.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 CLASIFICACIÓN ======================= -->
+<section class="section" id="clas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>02 · clasificación</div>
+      <h2 class="sec-title"><span class="num">/</span>Familias de actuadores</h2>
+      <p class="sec-sub">Por la energía que consumen: eléctricos, neumáticos (aire comprimido), hidráulicos (aceite a presión) y mecánicos (transmisión de movimiento). Filtra la matriz y toca cualquier actuador para inspeccionarlo.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="amaSegs" style="margin-bottom:16px">
+      <button class="seg active" data-f="all" type="button">Todos</button>
+      <button class="seg" data-f="elec" type="button">Eléctricos</button>
+      <button class="seg" data-f="neum" type="button">Neumáticos</button>
+      <button class="seg" data-f="hidr" type="button">Hidráulicos</button>
+      <button class="seg" data-f="mech" type="button">Mecánicos</button>
+    </div>
+
+    <div class="card" style="padding:14px 16px;margin-bottom:14px">
+      <span class="mono muted small" id="amaCount" style="letter-spacing:.12em;text-transform:uppercase">11 actuadores / 11 visibles</span>
+      <div class="mono red small" id="amaDetail" style="margin-top:6px;letter-spacing:.04em">Selecciona un actuador para inspeccionarlo.</div>
+    </div>
+
+    <div class="cls" id="amaGrid">
+      <div class="tile" data-c="elec" data-d="Convierte corriente continua en giro y par. Velocidad regulable por PWM; potencia media. Ideal para bandas y bombas de baja exigencia."><span class="cat">eléctrico</span><i class="fas fa-compress-alt"></i><b>Motor DC</b><span>corriente continua</span></div>
+      <div class="tile" data-c="elec" data-d="Funciona con corriente alterna (monofásico o trifásico). Gran potencia y robustez; velocidad ligada a la frecuencia de red."><span class="cat">eléctrico</span><i class="fas fa-bolt"></i><b>Motor AC</b><span>ca · monofásico / trifásico</span></div>
+      <div class="tile" data-c="elec" data-d="Gira en pasos discretos y exactos (p. ej. 1.8°). Posiciona sin encoder; el controlador entrega pulsos que definen ángulo y velocidad."><span class="cat">eléctrico</span><i class="fas fa-list-ul"></i><b>Motor paso a paso</b><span>pulsos · posicionamiento</span></div>
+      <div class="tile" data-c="elec" data-d="Motor + encoder y control propio: cierra el lazo de posición, velocidad y par. El estándar en robótica y CNC."><span class="cat">eléctrico</span><i class="fas fa-robot"></i><b>Servomotor</b><span>lazo cerrado interno</span></div>
+      <div class="tile" data-c="elec" data-d="Electroimán: conmuta un émbolo. Acción on/off rápida; se usa para válvulas, contactos y pilotos."><span class="cat">eléctrico</span><i class="fas fa-magnet"></i><b>Solenoide</b><span>on/off · bobina</span></div>
+      <div class="tile" data-c="neum" data-d="Cilindro empujado por aire comprimido. Simple efecto (resorte) o doble efecto (aire en ambas cámaras). Rápidos, limpios y seguros."><span class="cat">neumático</span><i class="fas fa-wind"></i><b>Cilindro neumático</b><span>aire comprimido</span></div>
+      <div class="tile" data-c="neum" data-d="Distribuye el aire entre las cámaras del cilindro. La 5/2 (5 vías, 2 posiciones) o la 3/2 gobiernan avance y retroceso."><span class="cat">neumático</span><i class="fas fa-exchange-alt"></i><b>Válvula neumática</b><span>distribuidor 5/2</span></div>
+      <div class="tile" data-c="hidr" data-d="Bomba de aceite impulsada por un motor eléctrico: suministra presión y caudal al circuito hidráulico."><span class="cat">hidráulico</span><i class="fas fa-tint"></i><b>Motobomba</b><span>aceite a presión</span></div>
+      <div class="tile" data-c="hidr" data-d="Cilindro movido por aceite a alta presión. Fuerzas enormes (prensas, excavadoras) con control fino del caudal."><span class="cat">hidráulico</span><i class="fas fa-arrows-alt-v"></i><b>Cilindro hidráulico</b><span>alta fuerza</span></div>
+      <div class="tile" data-c="hidr" data-d="Genera el flujo de aceite. Puede ser de engranajes, paletas o pistones; define presión (bar) y caudal (l/min) del sistema."><span class="cat">hidráulico</span><i class="fas fa-cog"></i><b>Bomba hidráulica</b><span>caudal · presión</span></div>
+      <div class="tile" data-c="mech" data-d="Convierten y transmiten movimiento: engranajes, levas, tornillo sinfín, embragues. Bajan la velocidad y multiplican el par."><span class="cat">mecánico</span><i class="fas fa-cogs"></i><b>Transmisiones</b><span>engranaje · leva · leva</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 ELÉCTRICOS / MOTORES ======================= -->
+<section class="section" id="elect">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>03 · eléctricos</div>
+      <h2 class="sec-title"><span class="num">/</span>Motores eléctricos</h2>
+      <p class="sec-sub">Tres máquinas que convierten energía eléctrica en giro con personalidades distintas: el <b>DC</b> se regula con PWM, el <b>AC</b> gira a la velocidad de la red y el <b>paso a paso</b> posiciona por pulsos. Cambia de motor y juega con sus controles.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="segs" id="motTabs">
+        <button class="seg red active" data-m="dc" type="button">Motor DC</button>
+        <button class="seg red" data-m="ac" type="button">Motor AC</button>
+        <button class="seg red" data-m="step" type="button">Motor paso a paso</button>
+      </div>
+
+      <div class="mot-grid">
+        <canvas class="mot-canvas" id="motCanvas" width="210" height="150"></canvas>
+
+        <div class="mot-ctl">
+          <p class="mono muted small" id="motPrinc" style="line-height:1.7">—</p>
+
+          <div id="ctlDC">
+            <div class="mono muted small" style="margin-bottom:4px">ciclo de trabajo · PWM</div>
+            <input type="range" id="dcPwm" min="0" max="100" value="0" class="accent">
+            <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+              <button class="btn" id="dcDir" type="button"><i class="fas fa-sync-alt"></i> Invertir sentido</button>
+              <span class="mono muted small" style="align-self:center" id="dcDirV">CW →</span>
+            </div>
+          </div>
+          <div id="ctlAC" style="display:none">
+            <div class="row">
+              <button class="btn red" id="acOn" type="button">Encender</button>
+              <button class="btn" id="acRev" type="button" disabled>Invertir fases</button>
+            </div>
+            <p class="muted small" style="line-height:1.6;font-size:11px">Invertir dos fases del trifásico cambia el sentido del campo giratorio.</p>
+          </div>
+          <div id="ctlSTEP" style="display:none">
+            <div class="row">
+              <button class="btn" id="spL" type="button">◀ paso</button>
+              <button class="btn" id="spR" type="button">paso ▶</button>
+              <button class="btn red" id="spAuto" type="button">Auto: OFF</button>
+            </div>
+            <div class="readrow"><span class="muted">ángulo del rotor</span><b id="spAngle">0.0°</b></div>
+          </div>
+
+          <div id="dcCtl2" style="display:none">
+            <div class="mono muted small" style="margin-bottom:4px">carga mecánica</div>
+            <input type="range" id="dcLoad" min="0" max="100" value="0" class="accent">
+          </div>
+        </div>
+      </div>
+
+      <div class="m-reads">
+        <div class="t-readrow" style="grid-template-columns:repeat(4,1fr)">
+          <div class="t-read"><span>velocidad</span><b id="mR1">0 rpm</b></div>
+          <div class="t-read"><span>par</span><b id="mR2">0.00 N·m</b></div>
+          <div class="t-read"><span>corriente</span><b id="mR3">0.15 A</b></div>
+          <div class="t-read"><span>potencia</span><b id="mR4">0 W</b></div>
+        </div>
+        <div class="coil-row" id="coilRow" style="display:none;margin-top:4px">
+          <div class="coil" data-ph="0">A+</div>
+          <div class="coil" data-ph="1">B+</div>
+          <div class="coil" data-ph="2">A−</div>
+          <div class="coil" data-ph="3">B−</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 NEUMÁTICOS ======================= -->
+<section class="section" id="neum">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>04 · neumáticos</div>
+      <h2 class="sec-title"><span class="num">/</span>Actuadores neumáticos</h2>
+      <p class="sec-sub">El aire comprimido es barato, limpio y rápido. Un cilindro neumático empuja un vástago cuando una válvula distribuidora dirige la presión a su cámara. Prueba efecto simple (retorno por resorte) y doble efecto (aire en ambas cámaras).</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="segs" id="pneTabs">
+        <button class="seg red active" data-p="se" type="button">Simple efecto</button>
+        <button class="seg red" data-p="dde" type="button">Doble efecto</button>
+      </div>
+
+      <div class="pneu-stage">
+        <div class="grid-dots"></div>
+        <div class="hose" id="pneHose"></div>
+        <div class="pneu-vis">
+          <div class="cyl-barrel"></div>
+          <div class="cyl-piston" id="pnePiston" style="left:62px"></div>
+          <div class="cyl-rod" id="pneRod" style="left:150px;width:10px"></div>
+          <div class="cyl-tip" id="pneTip" style="left:160px"></div>
+          <div class="cyl-ports">
+            <span class="pt"><i></i> P · suministro</span>
+            <span class="pt"><i></i> A · avance</span>
+            <span class="pt"><i></i> B · retroceso</span>
+            <span class="pt"><i></i> R · escape</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn red" id="pneAv" type="button"><i class="fas fa-arrow-right"></i> Avanzar 1.4</button>
+        <button class="btn" id="pneRe" type="button"><i class="fas fa-arrow-left"></i> Retroceder 1.2</button>
+      </div>
+
+      <div class="t-readrow" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
+        <div class="t-read"><span>válvula 5/2</span><b id="pneValve">vía B → escape</b></div>
+        <div class="t-read"><span>posición del vástago</span><b id="pnePos">0 mm</b></div>
+        <div class="t-read"><span>presión de línea</span><b id="pnePress">0 bar</b></div>
+      </div>
+      <p class="mono muted small" id="pnePrinc" style="line-height:1.7;margin-top:12px">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 HIDRÁULICOS ======================= -->
+<section class="section" id="hidr">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>05 · hidráulicos</div>
+      <h2 class="sec-title"><span class="num">/</span>Actuadores hidráulicos</h2>
+      <p class="sec-sub">El aceite a presión multiplica la fuerza. Una motobomba alimenta un cilindro hidráulico que eleva cargas enormes con movimientos suaves. Mantén pulsado BOMBEAR y mira crecer la presión.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="hyd-stage">
+        <div class="grid-dots"></div>
+        <div class="hyd-flex">
+          <div class="hyd-pump" id="hydPumpIcon">
+            <span class="blades"><i class="fas fa-fan"></i></span>
+          </div>
+          <div class="hyd-cyl">
+            <div class="hyd-cap"></div>
+            <div class="hyd-rod" id="hydRod" style="bottom:26px;height:24px"></div>
+            <div class="hyd-piston" id="hydPiston" style="bottom:4px"></div>
+            <div class="hyd-barrel"></div>
+            <div class="hyd-bar"><i id="hydBarFill"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn red" id="hydPump" type="button"><i class="fas fa-tint"></i> Bombear (mantén)</button>
+        <button class="btn" id="hydVent" type="button">Descargar</button>
+      </div>
+
+      <div class="t-readrow" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
+        <div class="t-read"><span>presión del aceite</span><b class="red" id="hydPress">0 bar</b></div>
+        <div class="t-read"><span>fuerza del cilindro</span><b id="hydForce">0 kN</b></div>
+        <div class="t-read"><span>posición del émbolo</span><b id="hydPos">0 %</b></div>
+      </div>
+      <p class="mono muted small" id="hydPrinc" style="line-height:1.7;margin-top:12px">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 ON/OFF ======================= -->
+<section class="section" id="ond">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>06 · on/off</div>
+      <h2 class="sec-title"><span class="num">/</span>Dispositivos de señal y conmutación</h2>
+      <p class="sec-sub">No todo actuador es un motor: la válvula solenoide corta fluidos, el piloto enciende una luz y el zumbador avisa con sonido. Tres actuadores de dos estados (on/off), tres interacciones.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="dev-grid">
+      <!-- Válvula solenoide -->
+      <div class="dev-card">
+        <div class="dc-tt"><span>válvula solenoide</span><b id="solState">VF · cerrada</b></div>
+        <div class="dev-vis" id="solVis">
+          <span class="sol-port left" id="solPortL">O entrada</span>
+          <div class="sol-coil"><i class="fas fa-bolt"></i></div>
+          <div class="sol-plunger"></div>
+          <span class="sol-port right" id="solPortR">VA·VF</span>
+        </div>
+        <button class="btn" id="solBtn" type="button">Energizar bobina</button>
+      </div>
+
+      <!-- Piloto -->
+      <div class="dev-card">
+        <div class="dc-tt"><span>piloto / lámpara</span><b id="pilState">OFF</b></div>
+        <div class="dev-vis" id="pilVis">
+          <div class="lamp"><i class="fas fa-lightbulb"></i></div>
+        </div>
+        <button class="btn" id="pilBtn" type="button">Encender piloto</button>
+      </div>
+
+      <!-- Zumbador -->
+      <div class="dev-card">
+        <div class="dc-tt"><span>zumbador · buzzer</span><b id="buzzState">silenciado</b></div>
+        <div class="dev-vis" id="buzzVis">
+          <div class="buzz">
+            <span class="arc a"></span>
+            <span class="arc b"></span>
+            <i class="fas fa-volume-up"></i>
+          </div>
+        </div>
+        <button class="btn" id="buzzBtn" type="button">Pulsar (mantén)</button>
+      </div>
+    </div>
+
+    <p class="muted small" style="line-height:1.7;margin-top:14px">Tres niveles de excitación de salida del controlador: la válvula acciona un proceso (flujo), el piloto indica un estado (visual, ~V LED) y el zumbador alerta (acústico, PWM en amplificador). Todos parten de un <b>sensor</b> que disparó la <b>lógica</b> del controlador.</p>
+  </div>
+</section>
+
+<!-- ======================= 07 COMPARADOR ======================= -->
+<section class="section" id="comp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>07 · comparador</div>
+      <h2 class="sec-title"><span class="num">/</span>Comparativa de actuadores</h2>
+      <p class="sec-sub">Toca cada fila para ver el perfil del actuador. La escala es 1–5: 5 = mejor desempeño (en fuerza, velocidad, precisión, silencio y economía).</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-wrap">
+      <div class="cmp-tbl" id="cmpTbl">
+        <div class="hd">actuador</div>
+        <div class="hd">fuerza</div>
+        <div class="hd">velocidad</div>
+        <div class="hd">precisión</div>
+        <div class="hd">silencio</div>
+        <div class="hd">economía</div>
+      </div>
+    </div>
+    <div class="cmp-detail" id="cmpDetail">
+      <span class="muted">Toca una fila del comparador para ver el detalle del actuador.</span>
+      <b class="red" id="cmpRecom">—</b>
+    </div>
+    <p class="mono muted small" style="margin-top:10px;line-height:1.7">Nota: «silencio» y «economía» se muestran invertidos a propósito: una barra larga significa poco ruido y bajo costo. Ningún actuador gana en todo: la selección es un balance.</p>
+  </div>
+</section>
+
+<!-- ======================= 08 CRITERIOS ======================= -->
+<section class="section" id="criterio">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>08 · selección</div>
+      <h2 class="sec-title"><span class="num">/</span>Criterios de selección</h2>
+      <p class="sec-sub">Pondera cuánto te importa cada criterio (0 a 5) y el asistente puntúa los actuadores para recomendarte el más adecuado.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="crit-grid">
+      <div class="crit-item"><label>fuerza de salida</label><input type="range" id="crF" min="0" max="5" step="1" value="3" class="accent"><div class="readrow"><span class="muted">importancia</span><b id="crFv">3</b></div></div>
+      <div class="crit-item"><label>precisión</label><input type="range" id="crP" min="0" max="5" step="1" value="3" class="accent"><div class="readrow"><span class="muted">importancia</span><b id="crPv">3</b></div></div>
+      <div class="crit-item"><label>velocidad</label><input type="range" id="crV" min="0" max="5" step="1" value="3" class="accent"><div class="readrow"><span class="muted">importancia</span><b id="crVv">3</b></div></div>
+      <div class="crit-item"><label>economía</label><input type="range" id="crE" min="0" max="5" step="1" value="3" class="accent"><div class="readrow"><span class="muted">importancia</span><b id="crEv">3</b></div></div>
+    </div>
+
+    <div class="segs" id="critPresets" style="margin:16px 0">
+      <button class="seg red" data-s="vel" type="button">Cinta / velocidad</button>
+      <button class="seg red" data-s="pres" type="button">Posicionar / precisión</button>
+      <button class="seg red" data-s="frz" type="button">Prensa / fuerza</button>
+      <button class="seg red" data-s="eco" type="button">Ahorrar / economía</button>
+    </div>
+
+    <div class="card">
+      <div class="rank-list" id="rankList"></div>
+      <div style="margin-top:16px"><span class="recom" id="rankRecom">Recomendación → esperando criterios</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 09 APLICACIONES ======================= -->
+<section class="section" id="apli">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>09 · aplicaciones</div>
+      <h2 class="sec-title"><span class="num">/</span>Aplicaciones industriales</h2>
+      <p class="sec-sub">Cada aplicación es una cadena <b class="red">SENSOR → CONTROLADOR → ACTUADOR</b>. Toca una tarjeta para abrir la ventana y explorar el lazo completo de la instalación.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="app-grid" id="appGrid">
+      <div class="app-card" data-a="cinta"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-conveyor "></i><b>Cinta transportadora</b><p>Clasificación de paquetes: un sensor fotoeléctrico detecta la caja y la banda avanza.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+      <div class="app-card" data-a="brazo"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-robot"></i><b>Brazo robótico</b><p>Posicionado de piezas: encoders y sensores de final de carrera guían el movimiento.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+      <div class="app-card" data-a="prensa"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-industry"></i><b>Prensa hidráulica</b><p>Estampado de metales: la presión se mide y el cilindro hidráulico aplica toneladas.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+      <div class="app-card" data-a="puerta"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-door-closed"></i><b>Puerta automática</b><p>Acceso: sensores de presencia abren y cierran la puerta de forma segura.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+      <div class="app-card" data-a="llenado"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-fill-drip"></i><b>Llenado de envases</b><p>Dosificación: un sensor de nivel corta la válvula solenoide al llegar a la marca.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+      <div class="app-card" data-a="hvac"><span class="ac-node">S→C→A</span><i class="ac-ico fas fa-wind"></i><b>Climatización HVAC</b><p>Confort: la temperatura medida regula la motobomba y el ventilador del sistema.</p><span class="ac-link">tocar para ver el lazo ↪</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 10 RETO ======================= -->
+<section class="section" id="reto">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>10 · reto</div>
+      <h2 class="sec-title"><span class="num">/</span>Reto actuadores</h2>
+      <p class="sec-sub">Ocho preguntas sobre el tema II. Respóndelas todas y suelta la orden final del módulo.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="quizstage" id="quizStage2">
+      <div class="qprog" id="qprog2"></div>
+      <div class="qcount" id="qcount2">Pregunta 01 / 08</div>
+      <div class="qtext" id="qtext2"></div>
+      <div class="qopts" id="qopts2"></div>
+      <div class="quiz-fb" id="qfb2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 11 GLOSARIO ======================= -->
+<section class="section" id="glos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>11 · glosario</div>
+      <h2 class="sec-title"><span class="num">/</span>Términos clave</h2>
+      <p class="sec-sub">Busca un término: la lista filtra en vivo mientras escribes.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="gsearch"><i class="fas fa-search"></i><input id="gInput2" type="text" placeholder="filtrar términos…"></div>
+    <div class="glist" id="glist2"></div>
+    <div class="gcount" id="gcount2"></div>
+  </div>
+</section>
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="nav-logo"><span class="dotp"></span>ACTUADORES<span class="red">_</span>T02</span>
+      <span class="mono muted small">SISTEMAS PROGRAMABLES · MATERIAL DIDÁCTICO · 2026-2</span>
+    </div>
+    <div class="foot-team">
+      <div><b>Armando Iovani Martinez Torres </b><span>23040179</span></div>
+      <div><b>Everardo Garcia Romero</b><span>23040176</span></div>
+      <div><b>Jaime Corza Martínez </b><span>23040230</span></div>
+      <div><b>Ariadna Deyanira Soto Zaragoza</b><span>23040042</span></div>
+      <div><b>Miguel Ángel Campos Arciga</b><span>23040059</span></div>
+      <div><b>Pedro Pérez Marín</b><span>23040170</span></div>
+    </div>
+    <div class="foot-nav">
+      <a class="btn" href="index.html"><i class="fas fa-arrow-left"></i> Tema I · Sensores</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= MODAL APLICACIÓN ======================= -->
+<div class="modal-back" id="modalBack">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><b id="modalTitle">Aplicación</b><button class="modal-close" id="modalClose" type="button" aria-label="cerrar">×</button></div>
+    <div class="modal-body">
+      <p id="modalDesc"></p>
+      <div class="scc-chain" id="modalChain"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/vendor/driver/driver.min.js"></script>
+<script src="assets/vendor/confetti/confetti.min.js"></script>
+<script src="assets/js/app2.js"></script>
+</body>
+</html>
