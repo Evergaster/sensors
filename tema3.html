@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microcontroladores · Sistemas Programables · T03</title>
+<link rel="stylesheet" href="assets/vendor/fontawesome/fontawesome.min.css">
+<link rel="stylesheet" href="assets/vendor/driver/driver.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/tema3.css">
+</head>
+<body>
+
+<!-- ======================= BARRA SUPERIOR ======================= -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="nav-logo" href="index.html"><span class="dotp"></span>MICROCONTROLADORES<span class="red">_</span>T03</a>
+    <nav class="nav-chips" id="navChips">
+      <a class="nav-chip" href="#inicio">01</a>
+      <a class="nav-chip" href="#concepto">02</a>
+      <a class="nav-chip" href="#sistema">03</a>
+      <a class="nav-chip" href="#familias">04</a>
+      <a class="nav-chip" href="#buses">05</a>
+      <a class="nav-chip" href="#memoria">06</a>
+      <a class="nav-chip" href="#tiposmem">07</a>
+      <a class="nav-chip" href="#io">08</a>
+      <a class="nav-chip" href="#dispositivos">09</a>
+      <a class="nav-chip" href="#leds">10</a>
+      <a class="nav-chip" href="#lcd">11</a>
+      <a class="nav-chip" href="#otros">12</a>
+      <a class="nav-chip" href="#encoders">13</a>
+      <a class="nav-chip" href="#reto">14</a>
+      <a class="nav-chip" href="#glos">15</a>
+    </nav>
+    <div class="theme-seg" role="tablist" aria-label="tema">
+      <a href="index.html">T01</a>
+      <a href="tema2.html">T02</a>
+      <a href="tema3.html" class="on" aria-current="page">T03</a>
+    </div>
+    <button class="tour-btn" id="btnTour" type="button">Recorrido</button>
+  </div>
+</header>
+
+<!-- ======================= MARQUEE ======================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee:track">
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema III: Microcontroladores</b></span>
+    <span class="m-sep">●</span><span class="m-item">CPU + Memoria + Entrada/Salida en un solo chip</span>
+    <span class="m-sep">●</span><span class="m-item">Familias · 8 · 16 · 32 bits</span>
+    <span class="m-sep">●</span><span class="m-item">Flash · RAM · EEPROM · Harvard</span>
+    <span class="m-sep">●</span><span class="m-item">GPIO · ADC · PWM · UART · I²C · SPI</span>
+    <span class="m-sep">●</span><span class="m-item">Sensor → Microcontrolador → Actuador</span>
+    <span class="m-sep">●</span><span class="m-item">Sistemas Programables — <b>Tema III: Microcontroladores</b></span>
+    <span class="m-sep">●</span><span class="m-item">CPU + Memoria + Entrada/Salida en un solo chip</span>
+    <span class="m-sep">●</span><span class="m-item">Familias · 8 · 16 · 32 bits</span>
+    <span class="m-sep">●</span><span class="m-item">Flash · RAM · EEPROM · Harvard</span>
+    <span class="m-sep">●</span><span class="m-item">GPIO · ADC · PWM · UART · I²C · SPI</span>
+    <span class="m-sep">●</span><span class="m-item">Sensor → Microcontrolador → Actuador</span>
+  </div>
+</div>
+
+<main>
+<!-- ======================= HERO ======================= -->
+<section class="hero section" id="inicio">
+  <div class="wrap">
+    <div class="herolay">
+      <div class="hero-copy">
+        <div class="hero-kick">Sistemas Programables · T03</div>
+        <h1 class="big">MICROCONTROLADORES<span class="red">.</span></h1>
+        <p>Si el sensor era el <b class="muted">ojo</b> y el actuador el <b class="red">músculo</b>, el microcontrolador es el <b class="muted">cerebro</b>: el eslabón que faltaba. Es una computadora completa —procesador, memorias y periféricos— sobre un solo chip, y es donde vive el programa que decide. Esta página cierra el lazo <b class="red">SENSOR → MICROCONTROLADOR → ACTUADOR</b>.</p>
+        <div class="hero-cta">
+          <button class="btn red" id="btnTour2" type="button">Iniciar recorrido</button>
+          <button class="btn" data-goto="#sistema" type="button">Ver el lazo completo</button>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="hs-head"><span>consola · bus_interno</span><span class="red">● live</span></div>
+        <div class="hs-body">
+          <div class="feedbox" id="feed3"></div>
+          <div class="glyphrow"><canvas id="heroGlyph3" width="240" height="52"></canvas></div>
+          <div class="hs-label">glyph // microcontrolador</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statrow">
+      <div class="stat"><div class="stat-num">14<i>/</i>15</div><div class="stat-lbl">secciones</div></div>
+      <div class="stat"><div class="stat-num">08</div><div class="stat-lbl">familias de µC</div></div>
+      <div class="stat"><div class="stat-num">14</div><div class="stat-lbl">demos interactivas</div></div>
+      <div class="stat"><div class="stat-num">S→µC→A</div><div class="stat-lbl">lazo cerrado</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 01 CONCEPTO ======================= -->
+<section class="section" id="concepto">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>01 · concepto</div>
+      <h2 class="sec-title"><span class="num">/</span>¿Qué es un microcontrolador?</h2>
+      <p class="sec-sub">Un microcontrolador es un computador completo implementado sobre un único encapsulado: unidad central de proceso, memorias y periféricos de entrada/salida trabajando en el mismo chip. Mueve el escáner sobre el silicio para inspeccionar cada bloque y toca una característica general para leer su significado.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="compstage">
+      <div>
+        <svg class="compsvg" id="mcuSvg" viewBox="0 0 220 190" preserveAspectRatio="none">
+          <g class="part" data-part="flash">
+            <rect x="44" y="20" width="60" height="26" rx="2"/>
+            <text x="74" y="37" text-anchor="middle">FLASH</text>
+          </g>
+          <g class="part" data-part="ram">
+            <rect x="110" y="20" width="66" height="26" rx="2"/>
+            <text x="143" y="37" text-anchor="middle">RAM</text>
+          </g>
+          <g class="part" data-part="timer">
+            <rect x="44" y="52" width="40" height="30" rx="2"/>
+            <text x="64" y="71" text-anchor="middle">TIM</text>
+          </g>
+          <g class="part" data-part="adc">
+            <rect x="90" y="52" width="40" height="30" rx="2"/>
+            <text x="110" y="71" text-anchor="middle">ADC</text>
+          </g>
+          <g class="part" data-part="uart">
+            <rect x="136" y="52" width="40" height="30" rx="2"/>
+            <text x="156" y="71" text-anchor="middle">UART</text>
+          </g>
+          <g class="part" data-part="cpu">
+            <rect x="44" y="88" width="132" height="44" rx="2"/>
+            <text x="110" y="115" text-anchor="middle">CPU</text>
+          </g>
+          <g class="part" data-part="eeprom">
+            <rect x="44" y="138" width="60" height="32" rx="2"/>
+            <text x="74" y="158" text-anchor="middle">EEPROM</text>
+          </g>
+          <g class="part" data-part="gpio">
+            <rect x="110" y="138" width="66" height="32" rx="2"/>
+            <text x="143" y="158" text-anchor="middle">GPIO</text>
+          </g>
+          <rect x="34" y="10" width="152" height="170" rx="3" fill="none" stroke="#333" stroke-width="1.5"/>
+          <g stroke="#2c2c2c" stroke-width="1">
+            <line x1="22" y1="26" x2="34" y2="26"/><line x1="22" y1="56" x2="34" y2="56"/>
+            <line x1="22" y1="86" x2="34" y2="86"/><line x1="22" y1="116" x2="34" y2="116"/>
+            <line x1="22" y1="146" x2="34" y2="146"/><line x1="22" y1="166" x2="34" y2="166"/>
+            <line x1="186" y1="26" x2="198" y2="26"/><line x1="186" y1="56" x2="198" y2="56"/>
+            <line x1="186" y1="86" x2="198" y2="86"/><line x1="186" y1="116" x2="198" y2="116"/>
+            <line x1="186" y1="146" x2="198" y2="146"/><line x1="186" y1="166" x2="198" y2="166"/>
+          </g>
+          <line class="scanline" id="mcuScan" x1="36" x2="184" y1="14" y2="14" stroke="#ff0036" stroke-width="1.5" opacity=".9"/>
+        </svg>
+        <p class="mono muted small" style="margin-top:10px;line-height:1.7">Un solo chip, un solo circuito: esta integración es lo que hace que un microcontrolador sea barato, pequeño y de bajo consumo frente a un microprocesador con memorias externas.</p>
+      </div>
+
+      <div class="comp-side">
+        <div class="comp-label" id="mcuLabel">
+          <b>—</b>
+          <span>Mueve el escáner o pulsa el barrido automático para identificar cada bloque del microcontrolador.</span>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:4px">posición del escáner</div>
+          <input type="range" id="mcuRange" min="0" max="100" value="10">
+        </div>
+        <button class="btn" id="mcuAuto" type="button">Barrido automático: OFF</button>
+        <div class="fs-mini">
+          <div class="fs-mini-head">familia activa <b id="mcuFam">AVR</b></div>
+          <div class="t-readrow" style="grid-template-columns:1fr 1fr">
+            <div class="t-read"><span>palabra</span><b id="mcuSpec1">8 bits</b></div>
+            <div class="t-read"><span>reloj</span><b id="mcuSpec2">20 MHz</b></div>
+            <div class="t-read"><span>programa</span><b id="mcuSpec3">32 KB</b></div>
+            <div class="t-read"><span>RAM</span><b id="mcuSpec4">2 KB</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-h">Características generales</h3>
+    <div class="carac-grid" id="caracGrid"></div>
+    <div class="carac-det" id="caracDet">
+      <span class="muted">Toca una característica general para ver por qué define a un microcontrolador.</span>
+      <b class="red" id="caracDetT">—</b>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 SISTEMA PROGRAMABLE ======================= -->
+<section class="section" id="sistema">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>02 · sistema programable</div>
+      <h2 class="sec-title"><span class="num">/</span>SENSOR → MICROCONTROLADOR → ACTUADOR</h2>
+      <p class="sec-sub">Los dos temas anteriores dejaron el lazo cortado: el sensor entrega una señal eléctrica y el actuador espera una orden, pero nadie las une. El microcontrolador es ese eslabón: ejecuta un programa, compara la lectura con la consigna y decide cuándo y cuánto manda al actuador. Elige un programa, mueve la variable del sensor y observa la cadena completa trabajar.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="evo-row">
+      <div class="evo-card">
+        <span class="evo-tag">tema i · sensores</span>
+        <i class="fas fa-eye"></i>
+        <b>Percibir</b>
+        <p>Convierte la magnitud física en señal eléctrica que el sistema puede leer: LDR, Pt100, ultrasonido, inductivo.</p>
+      </div>
+      <div class="evo-op">+</div>
+      <div class="evo-card">
+        <span class="evo-tag">tema ii · actuadores</span>
+        <i class="fas fa-cogs"></i>
+        <b>Mover</b>
+        <p>Convierte la orden eléctrica en movimiento, fuerza o trabajo: motor DC, válvula, solenoide, display.</p>
+      </div>
+      <div class="evo-op">=</div>
+      <div class="evo-card on">
+        <span class="evo-tag">tema iii · microcontrolador</span>
+        <i class="fas fa-microchip"></i>
+        <b>Decidir</b>
+        <p>Ejecuta el programa, adquisición de la señal, comparación con la consigna y generación de la orden. Sin él el lazo no cierra: es lo que convierte dos dispositivos sueltos en un sistema programable.</p>
+      </div>
+    </div>
+
+    <div class="syspanel">
+      <div class="sys-top">
+        <div class="segs" id="sysProgram">
+          <button class="seg red active" data-p="termo" type="button">Termostato</button>
+          <button class="seg red" data-p="nivel" type="button">Control de nivel</button>
+          <button class="seg red" data-p="cinta" type="button">Cinta clasificadora</button>
+          <button class="seg red" data-p="posic" type="button">Posicionamiento</button>
+        </div>
+        <button class="btn red" id="sysRun" type="button">Pausar programa</button>
+      </div>
+
+      <div class="sys-flow">
+        <div class="sys-node" id="sysSensor">
+          <div class="sn-head"><i class="fas fa-eye"></i><span>sensor</span></div>
+          <div class="sn-val" id="sysSensV">25 °C</div>
+          <div class="sn-sub" id="sysSensS">Pt100</div>
+        </div>
+        <div class="sys-link"><span class="sl-bus" id="slA">ADC</span><i class="pk" id="pkA"></i></div>
+        <div class="sys-node mcu" id="sysMcu">
+          <div class="sn-head"><i class="fas fa-microchip"></i><span>microcontrolador</span></div>
+          <div class="sn-val" id="sysMcuV">8 bits</div>
+          <div class="sn-sub" id="sysMcuS">esperando lectura…</div>
+          <div class="sn-pins"><span class="hi">VCC</span><span>GND</span><span>PA0</span><span>PA1</span><span class="hi">PB5</span><span>PA2</span><span>PC0</span><span>GND</span></div>
+        </div>
+        <div class="sys-link"><span class="sl-bus" id="slB">PWM</span><i class="pk" id="pkB"></i></div>
+        <div class="sys-node" id="sysAct">
+          <div class="sn-head"><i class="fas fa-cogs"></i><span>actuador</span></div>
+          <div class="sn-val" id="sysActV">0 %</div>
+          <div class="sn-sub" id="sysActS">ventilador · OFF</div>
+        </div>
+      </div>
+      <div class="sys-fb" id="sysFb"><i class="fas fa-rotate-left"></i> realimentación · el estado del actuador vuelve al lazo como información</div>
+
+      <div class="sys-mid">
+        <div class="sys-ctl">
+          <div>
+            <div class="mono muted small" style="margin-bottom:4px">consigna · setpoint</div>
+            <input type="range" id="sysSet" min="10" max="90" value="60" class="accent">
+            <div class="readrow"><span class="muted" id="sysConsName">temperatura objetivo</span><b class="red" id="sysSetV">60 °C</b></div>
+          </div>
+          <div>
+            <div class="mono muted small" style="margin-bottom:4px">variable medida por el sensor</div>
+            <input type="range" id="sysSens" min="0" max="100" value="25" class="accent">
+            <div class="readrow"><span class="muted">señal del mundo real</span><b id="sysSensV2">25.0 °C</b></div>
+          </div>
+          <div>
+            <div class="mono muted small" style="margin-bottom:8px">perturbación del lazo</div>
+            <button class="btn" id="sysPert" type="button">Perturbar</button>
+            <p class="mono muted small" style="margin-top:6px;line-height:1.6">El programa se recupera solo y vuelve a la consigna.</p>
+          </div>
+        </div>
+
+        <div class="sys-code">
+          <div class="code-head"><span>programa en memoria de programa</span><span class="red" id="sysPc">PC 0x0000</span></div>
+          <div class="code-body" id="sysCode"></div>
+        </div>
+      </div>
+
+      <div class="t-readrow" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
+        <div class="t-read"><span>conversión ADC</span><b id="sysAdc">—</b></div>
+        <div class="t-read"><span>salida al actuador</span><b id="sysReg">—</b></div>
+        <div class="t-read"><span>error</span><b id="sysErr">—</b></div>
+        <div class="t-read"><span>estado</span><b class="red" id="sysStatus">—</b></div>
+      </div>
+
+      <div class="sys-log" id="sysLog"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 FAMILIAS ======================= -->
+<section class="section" id="familias">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>03 · familias</div>
+      <h2 class="sec-title"><span class="num">/</span>Familias de microcontroladores</h2>
+      <p class="sec-sub">Se agrupan por arquitectura y longitud de palabra: 8, 16 y 32 bits, más las familias especializadas en procesamiento de señal. Filtra por tamaño y toca una familia para seleccionarla: la familia activa actualiza el bus, el mapa de memoria y el tipo de pinout en las secciones siguientes.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="famSegs" style="margin-bottom:16px">
+      <button class="seg active" data-f="all" type="button">Todas</button>
+      <button class="seg" data-f="8bit" type="button">8 bits</button>
+      <button class="seg" data-f="16bit" type="button">16 bits</button>
+      <button class="seg" data-f="32bit" type="button">32 bits</button>
+      <button class="seg" data-f="dsp" type="button">Señal · DSP</button>
+    </div>
+
+    <div class="card" style="padding:14px 16px;margin-bottom:14px">
+      <span class="mono muted small" id="famCount" style="letter-spacing:.12em;text-transform:uppercase">8 familias / 8 visibles</span>
+      <div class="mono red small" id="famDet" style="margin-top:6px;letter-spacing:.04em">Toca una familia para seleccionarla e inspeccionarla.</div>
+    </div>
+
+    <div class="cls" id="famGrid"></div>
+
+    <div class="fam-sheet">
+      <div class="fs-head">ficha técnica · familia activa <b id="famActName">AVR</b></div>
+      <div class="t-readrow" style="grid-template-columns:repeat(4,1fr)">
+        <div class="t-read"><span>longitud de palabra</span><b id="fsBits">—</b></div>
+        <div class="t-read"><span>memoria de programa</span><b id="fsFlash">—</b></div>
+        <div class="t-read"><span>memoria de datos RAM</span><b id="fsRam">—</b></div>
+        <div class="t-read"><span>memoria no volátil EEPROM</span><b id="fsEep">—</b></div>
+        <div class="t-read"><span>frecuencia de reloj</span><b id="fsFreq">—</b></div>
+        <div class="t-read"><span>pines de entrada/salida</span><b id="fsGpio">—</b></div>
+        <div class="t-read"><span>resolución del ADC</span><b id="fsAdc">—</b></div>
+        <div class="t-read"><span>periféricos típicos</span><b id="fsPer" style="font-size:11px;line-height:1.6">—</b></div>
+      </div>
+      <p class="muted small" id="fsUso" style="margin-top:12px;line-height:1.7">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 ANCHO DE BUSES ======================= -->
+<section class="section" id="buses">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>04 · buses</div>
+      <h2 class="sec-title"><span class="num">/</span>Ancho de buses</h2>
+      <p class="sec-sub">El ancho de bus es la cantidad de bits que viajan en paralelo por el bus interno en un ciclo de reloj: determina cuántos datos mueve el procesador de una sola vez, qué tan rápido se llena la memoria de programa y cuántos periféricos puede direccionar. Cambia el ancho y observa el flujo de bits.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="busSegs" style="margin-bottom:14px">
+      <button class="seg red active" data-w="8" type="button">8 bits</button>
+      <button class="seg red" data-w="16" type="button">16 bits</button>
+      <button class="seg red" data-w="32" type="button">32 bits</button>
+      <button class="seg red" data-w="64" type="button">64 bits</button>
+    </div>
+
+    <div class="buspanel">
+      <div class="bus-head">
+        <span>bus de datos · <b id="busW">8 bits</b></span>
+        <span class="mono muted small" id="busFam">familia activa: AVR</span>
+      </div>
+      <div class="bus-track"><div class="bus-row" id="busRow"></div></div>
+      <div class="bus-legend">
+        <span><i class="bit on"></i> bit = 1</span>
+        <span><i class="bit"></i> bit = 0</span>
+        <span><i class="div"></i> frontera de byte (8 bits)</span>
+        <span class="mono" id="busByte2">byte = 0b0000 0000</span>
+      </div>
+
+      <div class="t-readrow" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
+        <div class="t-read"><span>bytes por ciclo</span><b id="busBytes">1</b></div>
+        <div class="t-read"><span>ancho de instrucción</span><b id="busInstr">8 bits</b></div>
+        <div class="t-read"><span>caudal a 1 MHz</span><b id="busThr">0.10 MB/s</b></div>
+        <div class="t-read"><span>familias que lo usan</span><b id="busUse" style="font-size:11px;line-height:1.6">—</b></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <div class="mono muted small" style="letter-spacing:.16em;text-transform:uppercase">bus de datos × reloj = caudal</div>
+        <p class="muted small" style="line-height:1.7;margin:8px 0 4px">Un bus de 32 bits a 48 MHz mueve cuatro bytes por ciclo; uno de 8 bits a 20 MHz mueve solo uno. El ancho multiplica el reloj.</p>
+        <div class="mono muted small" style="margin:12px 0 4px">frecuencia del reloj</div>
+        <input type="range" id="busFreq" min="1" max="240" value="20" class="accent">
+        <div class="readrow"><span class="muted">frecuencia</span><b class="red" id="busFreqV">20 MHz</b></div>
+        <div class="readrow"><span class="muted">caudal del bus de datos</span><b id="busThrBig">0.20 MB/s</b></div>
+      </div>
+
+      <div class="card">
+        <div class="mono muted small" style="letter-spacing:.16em;text-transform:uppercase">bus de direcciones · 2ⁿ direcciones</div>
+        <p class="muted small" style="line-height:1.7;margin:8px 0 4px">El bus de direcciones no lleva datos: dice <b class="muted">en qué posición</b> se leen o escriben. Con <i>n</i> líneas se direccionan 2ⁿ posiciones de memoria.</p>
+        <div class="mono muted small" style="margin:12px 0 4px">líneas de dirección</div>
+        <input type="range" id="addrBits" min="8" max="32" value="16" class="accent">
+        <div class="readrow"><span class="muted">direcciones posibles</span><b class="red" id="addrVal">64 KB</b></div>
+        <div class="readrow"><span class="muted">memoria direccionable</span><b id="addrMem">64 KB</b></div>
+        <p class="mono muted small" id="addrNote" style="line-height:1.7;margin-top:10px">—</p>
+      </div>
+    </div>
+
+    <div class="bus-cmp">
+      <div class="bus-cmp-head">caudal comparativo a <b id="busCmpFreq">20 MHz</b></div>
+      <div id="busCmpRows"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 MEMORIA ======================= -->
+<section class="section" id="memoria">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>05 · memoria</div>
+      <h2 class="sec-title"><span class="num">/</span>Memoria en los microcontroladores</h2>
+      <p class="sec-sub">Dentro del chip hay varias memorias con papeles distintos: la que guarda el programa, la que guarda las variables de trabajo y la que conserva los datos cuando se corta la alimentación. La mayoría usa arquitectura Harvard, con buses separados para programa y datos; pocas familias la usan Von Neumann, con un solo bus compartido.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="memSegs" style="margin-bottom:14px">
+      <button class="seg red active" data-m="harvard" type="button">Arquitectura Harvard</button>
+      <button class="seg red" data-m="vonne" type="button">Arquitectura Von Neumann</button>
+    </div>
+
+    <div class="mem-wrap">
+      <div class="mem-col">
+        <div class="mem-title">mapa de memoria · <b id="memFam">AVR</b></div>
+        <div class="mem-map" id="memMap"></div>
+        <p class="mono muted small" style="margin-top:10px;line-height:1.7">Los anchos de barra usan escala comprimida (raíz) para que se vean los tres bloques: las etiquetas muestran el tamaño real.</p>
+        <div class="mem-arch" id="memArch"></div>
+        <button class="btn" id="memLoad" type="button" style="margin-top:10px">Cargar programa</button>
+      </div>
+
+      <div class="mem-side">
+        <div class="comp-label" id="memLabel">
+          <b>—</b>
+          <span>Toca un bloque del mapa para ver qué guarda y para qué sirve.</span>
+        </div>
+        <div class="t-readrow" style="grid-template-columns:1fr 1fr">
+          <div class="t-read"><span>memoria de programa</span><b id="memFlash">—</b></div>
+          <div class="t-read"><span>memoria de datos RAM</span><b id="memRam">—</b></div>
+          <div class="t-read"><span>memoria no volátil</span><b id="memEep">—</b></div>
+          <div class="t-read"><span>registros de la CPU</span><b id="memReg">32 × 8 bits</b></div>
+        </div>
+        <div class="mem-table" id="memTable"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 TIPOS DE MEMORIA ======================= -->
+<section class="section" id="tiposmem">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>06 · tipos de memoria</div>
+      <h2 class="sec-title"><span class="num">/</span>Tipos de memoria y su función</h2>
+      <p class="sec-sub">Cada tipo se distingue por tres cosas: si conserva el dato sin energía, cuánto tarda en responder y cuántas veces puede reescribirse. De ahí sale su función: guardar el programa, guardar variables de trabajo, conservar parámetros de calibración o actuar como caché.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="tmSegs" style="margin-bottom:16px">
+      <button class="seg active" data-f="all" type="button">Todas</button>
+      <button class="seg" data-f="vol" type="button">Volátiles</button>
+      <button class="seg" data-f="novol" type="button">No volátiles</button>
+      <button class="seg" data-f="ext" type="button">Externas</button>
+    </div>
+
+    <div class="card" style="padding:14px 16px;margin-bottom:14px">
+      <span class="mono muted small" id="tmCount" style="letter-spacing:.12em;text-transform:uppercase">11 tipos / 11 visibles</span>
+      <div class="mono red small" id="tmDetLine" style="margin-top:6px;letter-spacing:.04em">Toca un tipo de memoria para ver su función.</div>
+    </div>
+
+    <div class="tm-grid" id="tmGrid"></div>
+
+    <div class="tm-det" id="tmDetail">
+      <div class="tmd-head"><i class="fas fa-memory" id="tmDetIcon"></i><b id="tmDetName">—</b><span class="tag" id="tmDetTag">—</span></div>
+      <p id="tmDetDesc" class="muted small" style="line-height:1.7">Selecciona un tipo de memoria del mapa.</p>
+      <div class="t-readrow" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+        <div class="t-read"><span>función principal</span><b id="tmDetFn" style="font-size:12px;line-height:1.5">—</b></div>
+        <div class="t-read"><span>volatilidad</span><b id="tmDetVol">—</b></div>
+        <div class="t-read"><span>tiempo de acceso</span><b id="tmDetAcc">—</b></div>
+      </div>
+      <p class="mono muted small" id="tmDetUso" style="line-height:1.7;margin-top:10px">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 07 CIRCUITERÍA DE E/S ======================= -->
+<section class="section" id="io">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>07 · circuitería de entrada y salida</div>
+      <h2 class="sec-title"><span class="num">/</span>Circuitería de entrada y salida</h2>
+      <p class="sec-sub">Cada pin no es un simple cable: es un búfer con etapas de potencia, resistencias de pull y un multiplexor que reparte la misma línea entre varias funciones alternativas. Toca un pin del encapsulado, asígnale una función y observa cómo cambian su dirección, su nivel y sus conflictos.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="io-wrap">
+      <div class="io-pinbox">
+        <div class="io-title">pinout · <b id="ioFam">AVR</b> · 24 pines disponibles</div>
+        <div class="io-ports" id="pinGrid"></div>
+        <p class="mono muted small" style="margin-top:10px;line-height:1.7">Pines con punto: admiten función alternativa (ADC, temporizador, bus). El pin seleccionado se marca en rojo.</p>
+      </div>
+
+      <div class="io-side">
+        <div class="io-sel">pin seleccionado <b id="pinName">PA0</b></div>
+        <div class="io-fns" id="fnSegs"></div>
+        <div class="readrow"><span class="muted">función asignada</span><b class="red" id="pinFn">—</b></div>
+        <div class="readrow"><span class="muted">dirección</span><b id="pinDir">—</b></div>
+        <div class="readrow"><span class="muted">nivel lógico</span><b id="pinLvl">—</b></div>
+        <div class="readrow"><span class="muted">resistencia interna</span><b id="pinPull">—</b></div>
+        <div class="readrow"><span class="muted">corriente máxima</span><b id="pinI">—</b></div>
+        <div class="io-warn" id="pinWarn">Selecciona la función del pin para ver su configuración eléctrica.</div>
+        <div class="io-const">Reglas de los pines: un pin no puede ser entrada analógica y salida a la vez; asignar una segunda función alternativa desconfigura la primera; los pines de 5 V toleran 5 V de entrada y los de 3.3 V se dañan por encima de 3.6 V.</div>
+      </div>
+    </div>
+
+    <div class="io-busrow">
+      <div class="io-path">
+        <div class="ip-node"><span>CPU</span><i class="fas fa-microchip"></i></div>
+        <div class="ip-wire"><span class="ip-pk" id="ioPk"></span></div>
+        <div class="ip-node"><span>REGISTRO<br>de puerto</span><i class="fas fa-database"></i></div>
+        <div class="ip-wire"><span class="ip-pk" id="ioPk2"></span></div>
+        <div class="ip-node"><span>ETAPA de<br>potencia</span><i class="fas fa-bolt"></i></div>
+        <div class="ip-wire"><span class="ip-pk" id="ioPk3"></span></div>
+        <div class="ip-node out"><span id="ioPinName">PA0</span><i class="fas fa-plug"></i></div>
+      </div>
+    </div>
+
+    <div class="io-port">
+      <div class="io-title">contenido del puerto · toca un bit para cambiar su nivel</div>
+      <div class="io-bits" id="portBits"></div>
+      <div class="readrow" style="margin-top:8px"><span class="muted">valor escrito en el puerto</span><b class="red" id="portVal">0b0000 0000</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 08 DISPOSITIVOS DE E/S ======================= -->
+<section class="section" id="dispositivos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>08 · dispositivos</div>
+      <h2 class="sec-title"><span class="num">/</span>Generalidades de los dispositivos de entrada/salida</h2>
+      <p class="sec-sub">Un dispositivo de entrada/salida es lo que se conecta a los pines para que el sistema vea el mundo o actúe sobre él. Se clasifican por la dirección de la información —entrada, salida o bidireccional— y por el tipo de señal: digital, analógico o un bus de datos en serie.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="segs" id="io2Segs" style="margin-bottom:16px">
+      <button class="seg active" data-f="all" type="button">Todos</button>
+      <button class="seg" data-f="in" type="button">Entrada</button>
+      <button class="seg" data-f="out" type="button">Salida</button>
+      <button class="seg" data-f="io" type="button">Entrada–salida</button>
+    </div>
+
+    <div class="card" style="padding:14px 16px;margin-bottom:14px">
+      <span class="mono muted small" id="io2Count" style="letter-spacing:.12em;text-transform:uppercase">15 dispositivos / 15 visibles</span>
+      <div class="mono red small" id="io2DetLine" style="margin-top:6px;letter-spacing:.04em">Toca un dispositivo para ver su interfacing.</div>
+    </div>
+
+    <div class="io2-grid" id="io2Grid"></div>
+
+    <div class="io2-det" id="io2Detail">
+      <div class="iod-head"><i class="fas fa-plug" id="io2DetIcon"></i><b id="io2DetName">—</b><span class="tag" id="io2DetTag">—</span></div>
+      <p id="io2DetDesc" class="muted small" style="line-height:1.7">Selecciona un dispositivo de la matriz.</p>
+      <div class="t-readrow" style="grid-template-columns:repeat(4,1fr);margin-top:12px">
+        <div class="t-read"><span>interfaz</span><b id="io2DetIf" style="font-size:12px">—</b></div>
+        <div class="t-read"><span>pines</span><b id="io2DetPins">—</b></div>
+        <div class="t-read"><span>señal</span><b id="io2DetSig">—</b></div>
+        <div class="t-read"><span>bloque del microcontrolador</span><b id="io2DetBlk" style="font-size:11px;line-height:1.5">—</b></div>
+      </div>
+      <p class="mono muted small" id="io2DetUso" style="line-height:1.7;margin-top:10px">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 09 DISPLAYS LED ======================= -->
+<section class="section" id="leds">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>09 · displays led</div>
+      <h2 class="sec-title"><span class="num">/</span>Displays LED</h2>
+      <p class="sec-sub">El display LED es la salida más barata y rápida del microcontrolador: un diodo por segmento o por punto. El microcontrolador solo escribe un byte en un puerto y el hardware enciende lo que corresponda. Tres formas clásicas: 7 segmentos directo al puerto, matriz de puntos en cascada y barra de LED.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="segs" id="ledTabs">
+        <button class="seg red active" data-d="seg" type="button">7 segmentos</button>
+        <button class="seg red" data-d="matriz" type="button">Matriz de puntos</button>
+        <button class="seg red" data-d="barra" type="button">Barra de LED</button>
+      </div>
+
+      <!-- 7 segmentos -->
+      <div class="led-pane" id="paneSeg">
+        <div class="led-top">
+          <canvas id="segCanvas" width="240" height="120"></canvas>
+          <div class="led-side">
+            <div class="mono muted small" style="margin-bottom:6px">valor a mostrar</div>
+            <div class="led-stepper">
+              <button class="kbd" id="segDown" type="button">−</button>
+              <div class="mono" id="segVal" style="font-size:30px;min-width:70px;text-align:center">07</div>
+              <button class="kbd" id="segUp" type="button">+</button>
+            </div>
+            <div class="readrow" style="margin-top:10px"><span class="muted">PORTB · decenas</span><b id="segPB" style="font-size:11px">—</b></div>
+            <div class="readrow"><span class="muted">PORTD · unidades</span><b id="segPD" style="font-size:11px">—</b></div>
+          </div>
+        </div>
+        <div class="seg-bits">
+          <div class="seg-bits-head">byte enviado al puerto · un bit por segmento</div>
+          <div class="seg-bits-row" id="segBits"></div>
+        </div>
+        <p class="mono muted small" id="segNote" style="line-height:1.7;margin-top:10px">—</p>
+      </div>
+
+      <!-- matriz -->
+      <div class="led-pane" id="paneMat" style="display:none">
+        <div class="led-top">
+          <canvas id="matCanvas" width="270" height="80"></canvas>
+          <div class="led-side">
+            <div class="mono muted small">mensaje en el registro de desplazamiento</div>
+            <div class="shift-row">
+              <span class="shift-byte" id="sh0">0x00</span>
+              <span class="shift-byte" id="sh1">0x00</span>
+              <span class="shift-byte hi" id="sh2">0x00</span>
+            </div>
+            <p class="mono muted small" style="line-height:1.7;margin-top:8px">El texto no está guardado en el microcontrolador: cada columna viaja por el bus serial hacia el 74HC595 y el microcontrolador solo manda el siguiente byte.</p>
+            <div class="readrow" style="margin-top:6px"><span class="muted">pulsos de reloj</span><b id="shCount">0</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- barra -->
+      <div class="led-pane" id="paneBar" style="display:none">
+        <div class="mono muted small" style="margin-bottom:8px">señal del sensor que alimenta la barra</div>
+        <input type="range" id="barRange" min="0" max="100" value="0" class="accent">
+        <div class="readrow"><span class="muted">lectura del ADC</span><b class="red" id="barVal">0 · 0 V</b></div>
+        <div class="bar-track" id="barTrack"></div>
+        <div class="t-readrow" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+          <div class="t-read"><span>valor escalado a 8 bits</span><b id="barByte">0</b></div>
+          <div class="t-read"><span>byte enviado al puerto</span><b id="barPort" style="font-size:11px">—</b></div>
+          <div class="t-read"><span>pin que ilumina</span><b id="barPin">—</b></div>
+        </div>
+        <p class="mono muted small" style="line-height:1.7;margin-top:10px">Con 8 LEDs basta un puerto completo. Con más LEDs hay que multiplexar: el microcontrolador enciende un LED a la vez y los cambia cientos de veces por segundo; el ojo lo integra como si todos estuvieran encendidos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 10 DISPLAYS LCD ======================= -->
+<section class="section" id="lcd">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>10 · displays lcd</div>
+      <h2 class="sec-title"><span class="num">/</span>Displays LCD</h2>
+      <p class="sec-sub">El LCD de caracteres es un dispositivo de entrada/salida con su propio controlador interno (HD44780): el microcontrolador solo envía bytes y el chip se encarga de dibujar letras. Escriba con el teclado de la pantalla y observa en el cableado cómo viajan los bytes, un nibble a la vez, con el pulso de enable.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="lcd-wrap">
+      <div class="lcd-col">
+        <div class="lcd-screen">
+          <canvas id="lcdCanvas" width="330" height="96"></canvas>
+          <div class="lcd-bezel-foot"><span class="mono" id="lcdPos">fila 1 · col 1</span><span class="mono muted" id="lcdChar">0 / 32 caracteres</span></div>
+        </div>
+        <div class="segs" id="lcdCmd" style="margin:14px 0 12px">
+          <button class="seg red" data-c="init" type="button">Inicializar</button>
+          <button class="seg red" data-c="clear" type="button">Limpiar (0x01)</button>
+          <button class="seg red" data-c="home" type="button">Ir al inicio (0x02)</button>
+          <button class="seg red" data-c="cursor" type="button">Cursor: ON</button>
+          <button class="seg red" data-c="line2" type="button">Saltar a fila 2</button>
+        </div>
+        <div class="lcd-keys" id="lcdKeys"></div>
+        <div class="sys-log" id="lcdLog" style="margin-top:12px"></div>
+      </div>
+
+      <div class="lcd-col">
+        <div class="io-title">cableado del módulo · 14 pines</div>
+        <div class="lcd-wire" id="lcdWire"></div>
+        <div class="readrow" style="margin-top:10px"><span class="muted">byte en curso</span><b class="red" id="lcdByte" style="font-size:11px">—</b></div>
+        <div class="readrow"><span class="muted">nibble en el bus D4–D7</span><b id="lcdNib">0b0000</b></div>
+        <div class="readrow"><span class="muted">pulso de enable</span><b id="lcdE">—</b></div>
+        <div class="lcd-note">En modo de 4 bits (el más usado) cada byte viaja en dos viajes de 4 líneas. Primero el nibble alto con RS = 0 si es comando, RS = 1 si es carácter; después el nibble bajo. Entre nibbles el controlador necesita de 37 a 43 microsegundos de espera.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 11 OTROS DISPOSITIVOS DE VISUALIZACIÓN ======================= -->
+<section class="section" id="otros">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>11 · visualización</div>
+      <h2 class="sec-title"><span class="num">/</span>Otros dispositivos de visualización</h2>
+      <p class="sec-sub">Del LED de un pin a la pantalla táctil hay toda una gama. Cada opción cambia una variable: cantidad de información, interfaz de comunicación, consumo en reposo y precio. Toca una tarjeta para ver la visualización simulada con el valor del sistema.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="ot-grid" id="otGrid"></div>
+      </div>
+      <div class="ot-side">
+        <div class="ot-stage"><canvas id="otCanvas" width="300" height="170"></canvas></div>
+        <div class="ot-det" id="otDet">
+          <div class="otd-head"><b id="otName">—</b><span class="tag" id="otTag">—</span></div>
+          <p id="otDesc" class="muted small" style="line-height:1.7">Toca una tarjeta.</p>
+          <div class="t-readrow" style="grid-template-columns:1fr 1fr;margin-top:10px">
+            <div class="t-read"><span>interfaz con el µC</span><b id="otIf" style="font-size:11px">—</b></div>
+            <div class="t-read"><span>resolución</span><b id="otRes" style="font-size:11px">—</b></div>
+            <div class="t-read"><span>consumo en reposo</span><b id="otIdle" style="font-size:11px">—</b></div>
+            <div class="t-read"><span>uso típico</span><b id="otUse" style="font-size:11px">—</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-wrap" style="margin-top:14px">
+      <div class="cmp-tbl" id="otTbl"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 12 CODIFICADORES DE POSICIÓN ======================= -->
+<section class="section" id="encoders">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>12 · posición</div>
+      <h2 class="sec-title"><span class="num">/</span>Codificadores de posición</h2>
+      <p class="sec-sub">Un codificador convierte el movimiento en pulsos que el microcontrolador puede contar. El incremental entrega dos señales desfasadas 90° (cuadratura) que indican sentido y cantidad; el absoluto entrega un código binario de la posición. Arrastra el disco y observa la cuenta.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="cmp-panel">
+      <div class="segs" id="encTabs">
+        <button class="seg red active" data-e="cuad" type="button">Incremental · cuadratura</button>
+        <button class="seg red" data-e="abs" type="button">Absoluto · código Gray</button>
+        <button class="seg red" data-e="pot" type="button">Potenciométrico</button>
+      </div>
+
+      <div class="enc-stage" id="encStage">
+        <div class="grid-dots"></div>
+        <canvas id="encCanvas" width="330" height="200"></canvas>
+        <p class="enc-hint mono" id="encHint">Arrastra el disco · o pulsa GIRO AUTO</p>
+      </div>
+
+      <div class="enc-ctl" id="encCtlCuad">
+        <div>
+          <div class="mono muted small" style="margin-bottom:4px">pulsos por vuelta (PPR)</div>
+          <input type="range" id="encPpr" min="12" max="1024" step="1" value="250" class="accent">
+          <div class="readrow"><span class="muted">PPR</span><b id="encPprV">250</b></div>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">modo de conteo</div>
+          <div class="segs" id="encMode">
+            <button class="seg red active" data-x="4" type="button">x4</button>
+            <button class="seg red" data-x="2" type="button">x2</button>
+            <button class="seg red" data-x="1" type="button">x1</button>
+          </div>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">movimiento</div>
+          <button class="btn" id="encAuto" type="button">Giro auto: OFF</button>
+        </div>
+      </div>
+      <div class="enc-ctl" id="encCtlAbs" style="display:none">
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">resolución</div>
+          <div class="segs" id="encBits">
+            <button class="seg red" data-b="8" type="button">8 bits</button>
+            <button class="seg red active" data-b="12" type="button">12 bits</button>
+            <button class="seg red" data-b="16" type="button">16 bits</button>
+          </div>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">movimiento</div>
+          <button class="btn" id="encAuto2" type="button">Giro auto: OFF</button>
+        </div>
+        <div>
+          <div class="mono muted small">arrastra en cualquier dirección</div>
+          <p class="mono muted small" style="line-height:1.6;margin-top:4px">El sensor de un encoder absoluto lee 8 pistas concéntricas: por eso devuelve la posición aunque el sistema arranque con el eje ya girado.</p>
+        </div>
+      </div>
+      <div class="enc-ctl" id="encCtlPot" style="display:none">
+        <div>
+          <div class="mono muted small" style="margin-bottom:4px">posición del cursor</div>
+          <input type="range" id="potRange" min="0" max="100" value="25" class="accent">
+          <div class="readrow"><span class="muted">posición</span><b id="potVal">25 %</b></div>
+        </div>
+        <div>
+          <div class="mono muted small" style="margin-bottom:8px">movimiento</div>
+          <button class="btn" id="encAuto3" type="button">Giro auto: OFF</button>
+        </div>
+        <div>
+          <div class="mono muted small">lectura del divisor</div>
+          <p class="mono muted small" style="line-height:1.6;margin-top:4px">Un potenciómetro no entrega pulsos: entrega un voltaje proporcional al ángulo. El ADC lo convierte a número, pero la resolución real depende de los bits del convertidor.</p>
+        </div>
+      </div>
+
+      <div class="t-readrow" style="grid-template-columns:repeat(5,1fr);margin-top:14px">
+        <div class="t-read"><span id="encR1k">dirección</span><b id="encR1" class="red">—</b></div>
+        <div class="t-read"><span id="encR2k">conteo</span><b id="encR2">—</b></div>
+        <div class="t-read"><span id="encR3k">posición</span><b id="encR3">—</b></div>
+        <div class="t-read"><span id="encR4k">canales</span><b id="encR4">—</b></div>
+        <div class="t-read"><span id="encR5k">resolución</span><b id="encR5">—</b></div>
+      </div>
+
+      <p class="mono muted small" id="encNote" style="line-height:1.7;margin-top:12px">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 13 RETO ======================= -->
+<section class="section" id="reto">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>13 · reto</div>
+      <h2 class="sec-title"><span class="num">/</span>Reto final</h2>
+      <p class="sec-sub">Ocho preguntas sobre microcontroladores, buses, memoria y periféricos. Responde todo para desbloquear la calificación del módulo.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="quizstage" id="quizStage3">
+      <div class="qprog" id="qprog3"></div>
+      <div class="qcount" id="qcount3">Pregunta 01 / 08</div>
+      <div class="qtext" id="qtext3"></div>
+      <div class="qopts" id="qopts3"></div>
+      <div class="quiz-fb" id="qfb3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 14 GLOSARIO ======================= -->
+<section class="section" id="glos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick"><span class="sq"></span>14 · glosario</div>
+      <h2 class="sec-title"><span class="num">/</span>Términos clave</h2>
+      <p class="sec-sub">Busca un término: la lista filtra en vivo mientras escribes.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="gsearch"><i class="fas fa-search"></i><input id="gInput3" type="text" placeholder="filtrar términos…"></div>
+    <div class="glist" id="glist3"></div>
+    <div class="gcount" id="gcount3"></div>
+  </div>
+</section>
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="nav-logo"><span class="dotp"></span>MICROCONTROLADORES<span class="red">_</span>T03</span>
+      <span class="mono muted small">SISTEMAS PROGRAMABLES · MATERIAL DIDÁCTICO · 2026-2</span>
+    </div>
+    <div class="foot-team">
+      <div><b>Armando Iovani Martinez Torres </b><span>23040179</span></div>
+      <div><b>Everardo Garcia Romero</b><span>23040176</span></div>
+      <div><b>Jaime Corza Martínez </b><span>23040230</span></div>
+      <div><b>Ariadna Deyanira Soto Zaragoza</b><span>23040042</span></div>
+      <div><b>Miguel Ángel Campos Arciga</b><span>23040059</span></div>
+      <div><b>Pedro Pérez Marín</b><span>23040170</span></div>
+    </div>
+    <div class="foot-nav">
+      <a href="tema2.html"><i class="fas fa-arrow-left"></i> Tema II · Actuadores</a>
+      <a href="index.html"><i class="fas fa-grip"></i> Tema I · Sensores</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/driver/driver.min.js"></script>
+<script src="assets/vendor/confetti/confetti.min.js"></script>
+<script src="assets/js/app3.js"></script>
+</body>
+</html>
